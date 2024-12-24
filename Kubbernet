@@ -1,0 +1,83 @@
+[12/24, 8:01 AM] . Abhishek: kubectl version --client
+
+kubectl cluster-info
+
+3. Deploy a Simple Application
+
+1. Create a Deployment:
+
+o Write a simple deployment YAML file (e.g., nginx-deployment.yaml)
+[12/24, 8:02 AM] . Abhishek: apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+ name: nginx-deployment
+
+spec:
+
+ replicas: 2
+
+ selector:
+
+ matchLabels:
+
+ app: nginx
+
+ template:
+
+ metadata:
+
+ labels:
+
+ app: nginx
+
+ spec:
+
+ containers:
+
+ - name: nginx
+
+ image: nginx:1.21
+
+ ports:
+
+ - containerPort: 80
+
+Apply the Deployment:
+
+• Save the YAML file and run:
+
+bash
+
+kubectl apply -f nginx-deployment.yaml
+
+Check the Pods:
+
+• Verify the deployment and running pods:
+
+Bash
+
+kubectl get pods
+
+4. Expose the Application
+
+1. Create a Service:
+
+o Expose the deployment using a NodePort
+[12/24, 8:03 AM] . Abhishek: kubectl expose deployment nginx-deployment --type=NodePort --name=nginx-service
+
+Get the Service Details:
+
+• Find the port to access the service:
+
+bash
+
+kubectl get svc
+
+Access the Application:
+
+• Open a browser and go to:
+
+http://localhost:<NodePort>
